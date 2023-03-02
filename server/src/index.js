@@ -13,9 +13,7 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-    credentials:true,
-    origin:["http://localhost:3000", "https://eventproposalpage.onrender.com", "https://animated-strudel-9144b7.netlify.app"],
-    methods: "GET,PUT,POST,DELETE"
+    credentials:true
 }));
 app.use(express.json());
 
