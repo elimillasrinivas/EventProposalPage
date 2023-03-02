@@ -25,6 +25,9 @@ const port=process.env.PORT || 8000
 app.use("/events", proposalRouter);//abhijeeth
 app.use("/users", userRouter);//uttej
 app.use("/vendors", vendorRouter);
+app.get("/", (req, res)=>{
+    res.status(200).json({msg:"Welcome"});
+})
 
 app.listen(port, () => {
     console.log(`Server started at Port ${process.env.PORT}`)
