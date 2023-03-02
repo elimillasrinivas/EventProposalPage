@@ -84,7 +84,7 @@ const loginUser = async(req, res) => {
                     exp: Math.floor(Date.now() / 1000) + (60 * 60),// 1 hour
                     data: tokenData,
                   },process.env.JWT_SECRET_KEY);
-                return res.cookie("jwttoken", token, {maxAge: 60*60*1000,httpOnly:true,secure:"secret"})
+                return res.cookie("jwttoken", token, {maxAge: 60*60*1000,httpOnly:true,secure:true})
                     .status(200).json({
                     status:"success",
                     message:"user logged in",
