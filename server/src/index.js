@@ -6,7 +6,7 @@ const proposalRouter = require("./routes/proposal");
 const vendorRouter = require("./routes/Vendor");
 const userRouter = require("./routes/user");
 const cookieParser = require("cookie-parser");
-const conn=require("./connections/connect");
+const conn=require("./connection/connect");
 conn();//connection with backend established
 dotenv.config();
 const app = express();
