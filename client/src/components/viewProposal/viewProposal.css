@@ -1,0 +1,73 @@
+
+#proposalList{
+    margin-top: 50px;
+    display:block;
+    width: 100%;
+    text-align: left;
+}
+.proposal{
+    display:block;
+    width: 1000px;
+    border: 1px solid black;
+    margin: 20px auto;
+}
+.proposal .proposalFooter .details{
+    display:flex;
+}
+.proposal .proposalFooter .details .singleDetail{
+    box-shadow: 0px 0px 1px grey;
+    width:150px;
+    text-align: center;
+}
+.proposal .name{
+    margin-left:40px;
+}
+.proposal .description{
+    margin-left:40px;
+}
+
+.proposal .proposalFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.proposal .proposalFooter .icons{
+    margin-right: 20px;
+}
+
+.proposal .proposalFooter .editIcon{
+    margin-right: 20px;
+}
+
+#searchProposals{
+    width: 1000px;
+    display: flex;
+    margin: auto;
+    height: 30px;
+    margin-top: 50px;
+}
+#searchProposals #proposalsText{
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 20px;
+}
+#searchProposals #searchText{
+    width: 700px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+#searchProposals #searchIcon, .proposal .proposalFooter .icons .editIcon, .proposal .proposalFooter .icons .deleteIcon{
+    width: 30px;
+    height: 30px;
+}
+
+#searchProposals #searchButton{
+    margin-left: 20px;
+    width: 120px;
+    background-color: rgb(184, 184, 248);
+    border-radius: 20px;
+    color: green;
+    text-shadow: 0px 0px 5px white;
+}

@@ -1,0 +1,162 @@
+.proposalPostingForm{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #E5E0E0;
+    border-radius: 12px;
+    opacity: 1;
+    margin: 50px auto;
+    width:800px;
+    height:600px;
+}
+.renderImages, #renderEventImage{
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}
+
+.proposalPostingForm>header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    height:50px;
+    border-bottom:1px solid #919191;
+}
+.proposalPostingFormbackSymbol{
+   margin-right: 2%;
+   color:#919191;
+}
+.proposalPostingFormbackSymbol:hover{
+    cursor:pointer;
+    color:red;
+}
+.proposalPostingForm>header>h3{
+    font: normal normal normal 26px/10px Open Sans;
+    letter-spacing: 0.78px;
+    color: #393A3B;
+    opacity: 1;
+    margin-left: 38%;
+
+}
+.proposalPostingForm>section{
+    display:flex;
+}
+.proposalPostingForm>section>section{
+    flex:50%;
+    height:500px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+/* .proposalPostingForm>section>section:first-child{
+    background-color: yellow;
+} */
+.proposalPostingFormBodyLeftPart>section{
+    margin:15px 0px;
+}
+.proposalPostingFormBodyLeftPart>section input{
+    border:1px solid #E5E0E0;
+    color:#878889
+}
+.proposalPostingFormBodyLeftPart>section select{
+    border:1px solid #E5E0E0;
+    color:#878889
+}
+.proposalPostingFormBodyLeftPart>section textarea{
+    border:1px solid #E5E0E0;
+    color:#878889
+}
+.proposalPostingFormBodyLeftPart>section:first-child{
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(2){
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(2)>section{
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(2)>section>select{
+   width:120px;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(3){
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(3)>section{
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(3)>section>select{
+    width:120px;
+ }
+ .proposalPostingFormBodyLeftPart>section:nth-child(3)>section>input{
+    width:120px;
+ }
+.proposalPostingFormBodyLeftPart>section:nth-child(4){
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(4)>section{
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormBodyLeftPart>section:nth-child(4)>section>input{
+    width:120px;
+ }
+.proposalPostingFormBodyLeftPart>section:last-child{
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormBodyLeftPart>section:last-child>textarea{
+    height: 130px;
+}
+.proposalPostingFormBodyRightPart{
+    border-left: 1px solid #919191;
+}
+.proposalPostingFormBodyRightPart>section{
+    margin:15px 0px;
+}
+.proposalPostingFormBodyRightPart>section input{
+    border:1px solid #E5E0E0;
+    color:#878889
+}
+.proposalPostingFormBodyRightPart>section select{
+    border:1px solid #E5E0E0;
+    color:#878889
+}
+.proposalPostingFormBodyRightPart>section textarea{
+    border:1px solid #E5E0E0;
+    color:#878889;
+    height: 40px
+}
+.proposalPostingFormBodyRightPart>section:nth-child(5){
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormBodyRightPart>section:last-child{
+    display:flex;
+    flex-direction: column;
+}
+.proposalPostingFormFooter{
+    border-top: 1px solid #919191;
+}
+.proposalPostingFormFooter>button{
+   margin: auto;
+   margin-top: 5px;
+   width: 100px;
+   height: 40px;
+   background: #4E94F4 0% 0% no-repeat padding-box;
+   border-radius: 5px;
+   border-style: none;
+   opacity: 1;
+   color: white;
+}
+.proposalPostingFormFooter>button:hover{
+    cursor:pointer;
+}
+.Images{
+    height: 50px;
+}
