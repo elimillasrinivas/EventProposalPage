@@ -67,7 +67,7 @@ const loginVendor = (req, res) => {
                     res.cookie("jwttoken", token, {
                         maxAge: 60*60*1000,
                         httpOnly:true,
-                        secure:"secret"
+                        secure: true
                     })
                     res.status(200).json({
                         msg:"Success"
