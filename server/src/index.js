@@ -6,12 +6,19 @@ const proposalRouter = require("./routes/proposal");
 const vendorRouter = require("./routes/vendor");
 const userRouter = require("./routes/User");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 const conn=require("./connection/connect");
 conn();//connection with backend established
 dotenv.config();
 const app = express();
 app.use(cookieParser());
-
+app.use(session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: true}
+}))
 app.use(cors({
     credentials:true,
     origin:"https://animated-strudel-9144b7.netlify.app"
