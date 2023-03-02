@@ -1,14 +1,15 @@
 import TopBar from "../topBar/topbar"
 import "./landingPage.css"
-import {data} from "../../data"
+// import {data} from "../../data"
 import LandingPageListItem from "../landingPageListItem/landingPageList"
 import { useState } from "react";
 import {Delete} from "@mui/icons-material"
 import { useEffect } from "react";
 import axios from "axios";
 const LandingPage=()=>{
-    const [arr,setArr]=useState(Array(data.length).fill(false));
+    
     const [selected,setSelected]=useState({isValid:false,data:{}});
+    const [arr,setArr]=useState(Array(selected.data.length).fill(false));
     const [userInfo,setUserInfo]=useState({});
     const [proposals,setProposals]=useState([]);
     const userSelectionDeleteHandler=()=>{
