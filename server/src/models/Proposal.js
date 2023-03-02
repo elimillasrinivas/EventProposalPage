@@ -6,6 +6,10 @@ const Proposal = new mongoose.Schema({
         required: true,
         trim: true
     },
+    vendorEmail: {
+        type: String,
+        trim: true
+    },
     vendorId: {
         type: String,
         required: true,
