@@ -9,7 +9,7 @@ const HeaderDashboard = () => {
     const [vendorName, setVendorName] = useState("");
     useEffect(() => {
         setTimeout(() => {
-            axios.get("http://localhost:8000/vendors/info", { withCredentials: true }).then(data => {
+            axios.get("https://eventproposalserver.onrender.com/vendors/info", { withCredentials: true }).then(data => {
                 console.log(data);
                 setVendorName(data.data.vendorName);
             }).catch(err=>{
@@ -22,7 +22,7 @@ const HeaderDashboard = () => {
         <div>
             <span>{vendorName}</span>
             <button id="logout" onClick={() => {
-                axios.get("http://localhost:8000/vendors/logout", { withCredentials: true }).then(() => {
+                axios.get("https://eventproposalserver.onrender.com/vendors/logout", { withCredentials: true }).then(() => {
                     alert("Logged Out Successfully");
                     navigate("/");
                 })

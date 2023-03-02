@@ -86,7 +86,7 @@ const registerHandler=(e)=>{
                 email:form.email,
                 password:form.password
             }
-             axios.post("http://localhost:8000/vendors/register",data).then((response)=>{
+             axios.post("https://eventproposalserver.onrender.com/vendors/register",data).then((response)=>{
                 console.log(response);
                 navigate("/")
              }).catch((error)=>{console.log(error)});  
@@ -98,7 +98,7 @@ const registerHandler=(e)=>{
                 email:form.email,
                 password:form.password
             }
-             axios.post("http://localhost:8000/users/register",data).then((response)=>{
+             axios.post("https://eventproposalserver.onrender.com/users/register",data).then((response)=>{
                 console.log(response);
                 navigate("/")
              }).catch((error)=>{console.log(error)});  
