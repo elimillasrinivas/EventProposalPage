@@ -14,9 +14,9 @@ const EventInfo=(props)=>{
         {
             
            
-            axios.put(`http://localhost:8000/users/${props.user}`,{select:props.show._id})
+            axios.put(`https://eventproposalserver.onrender.com/users/${props.user}`,{select:props.show._id})
             .then((response)=>{
-                axios.get(`http://localhost:8000/events/${props.show._id}`,{withCredentials:true})
+                axios.get(`https://eventproposalserver.onrender.com/events/${props.show._id}`,{withCredentials:true})
                 .then((res)=>{
                     props.setSelect({isValid:true,data:res.data.result})
                     

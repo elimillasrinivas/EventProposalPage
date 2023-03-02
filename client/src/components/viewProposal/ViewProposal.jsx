@@ -11,7 +11,7 @@ const ViewProposal = ({ setUpdate }) => {
     const [search, setSearch] = useState("");
     const reloadData = (word) => {
         setTimeout(async () => {
-            const data = await axios.get(`http://localhost:8000/events/info`, { withCredentials: true })
+            const data = await axios.get(`https://eventproposalserver.onrender.com/events/info`, { withCredentials: true })
             console.log(data.data.result);
                 if(word===""){
                     setProposals(data.data.result);
@@ -78,7 +78,7 @@ const ViewProposal = ({ setUpdate }) => {
                                 navigate("/update");
                             }} />
                             <img className="deleteIcon" src="/images/bin.jpeg" alt="deleteIcon" onClick={()=>{
-                                axios.delete(`http://localhost:8000/events/${data._id}`).then((response)=>{
+                                axios.delete(`https://eventproposalserver.onrender.com/events/${data._id}`).then((response)=>{
                                     console.log(response);
                                     reloadData("");
                                     
