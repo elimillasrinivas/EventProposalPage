@@ -1,0 +1,117 @@
+.registrationPageContainer{
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0px;
+    margin-top: 0px;
+    background-image: url("../../../public/images/reglogBackground.png");
+    background-size: cover;
+    background-position: 0px;
+    background-repeat: no-repeat;
+    
+}
+.registrationPageContainer>h1{
+    color:white;
+    letter-spacing: 1.28px;
+    margin-left: 1%;
+    font: normal normal bold 32px/43px Open Sans;
+}
+.registrationPageContainer>section{
+    display:flex;
+    justify-content: space-between;
+    margin-top: 10%;
+}
+.registrationPageContainerButtonColor{
+    color:#4E94F4;
+}
+.registrationPageForm{
+    display:flex;
+    flex-direction: column;
+    border:1px;
+    width:425px;
+    height:auto;
+    background-color: white;
+    border-radius: 8px;
+}
+.registrationPageForm>section:first-child{
+    border:1px solid #D1D1D1;
+    border-radius: 8px;
+}
+.registrationPageForm>section>button{
+    width:50%;
+    margin-top: 0px;
+    height:30px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-style: none;
+    border-right:1px solid #D1D1D1 ;
+    opacity: 1;
+   
+}
+.registrationPageForm>section>button{
+    cursor:pointer;
+}
+.registrationPageForm>h3{
+    margin-top: 25px;
+    margin-left: 20px;
+    font: normal normal normal 22px/30px Open Sans;
+}
+.registrationPageForm>input{
+    margin:10px 20px;
+    height:30px;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    font: normal normal 600 Open Sans;
+}
+.registrationPageContainer>section>section{
+    margin: 0px 80px;
+}
+.registrationPageContainer>section>section:first-child>p{
+    color:white;
+    font-style: normal normal 600 70px/96px Open Sans;
+    letter-spacing: 3.5px;
+    width:330px;
+    font-size: 45px;
+
+}
+.registrationPageContainer>section>section:first-child>button{
+    border-radius: 8px;
+    background-color:#4E94F4;
+    color:white;
+    font: normal normal bold 16px/22px Open Sans;
+    height:40px;
+    width:100px;
+    border: none;
+}
+.registrationPageContainer>section>section:first-child>button:hover{
+    cursor:pointer;
+}
+.registrationPageFormButtonSection{
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+.registrationPageFormButtonSection>button{
+    color:#4E94F4;
+    background-color: white;
+    border:none;
+    font: normal normal 600 14px/24px Open Sans;
+}
+.registrationPageFormButtonSection>button:hover{
+    cursor:pointer;
+}
+.registrationButton{
+    display:flex;
+    align-items: center;
+}
+.registrationButton>button{
+    background-color: #4E94F4;
+    font: normal normal bold 12px/28px Open Sans;
+    border-style: none;
+    border-radius: 6px;
+    color:white;
+    opacity: 1;
+}
+.registrationButton>button:hover{
+    cursor:pointer;
+}
