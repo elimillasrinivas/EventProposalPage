@@ -5,6 +5,7 @@ const createProposal = async (req, res) => {
         const proposal = new Proposal({ ...req.body });
         proposal.vendorName = req.result.data.vendorName;
         proposal.vendorId = req.result.data._id;
+        proposal.vendorEmail = req.result.data.email;
         await proposal.save().then(data => {
             res.status(201).json({
                 msg: "Success",
