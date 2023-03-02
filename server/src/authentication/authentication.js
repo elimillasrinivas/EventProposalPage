@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const getAuthenticate = (req, res, next) => {
     try{
-        const cookie = req.cookies.jwttoken;
+        const cookie = req.session.jwttoken;
         const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret" //Is or condition really required??
         const result = jwt.verify(cookie, jwtSecretKey);
         req.result = result
@@ -10,15 +10,13 @@ const getAuthenticate = (req, res, next) => {
             next();
         }else{
             res.status(401).json({
-                msg:"user should re-login",
-                result:req.cookies.jwttoken
+                msg:"user should re-login"
             })
         }
     }
     catch(e){
         res.status(401).json({
-            msg:e.message,
-            result:req.cookies.jwttoken
+            msg:e.message
         })
     }
 }
