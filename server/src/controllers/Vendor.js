@@ -64,7 +64,10 @@ const loginVendor = (req, res) => {
                     }
                     const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
                     const token = jwt.sign( tokenData, jwtSecretKey, { expiresIn:"1 hr"});
-                    res.headers("Cookie": `jwttoken=${token}; HttpOnly; Secure`);
+                    res.cookie('jwttoken', token, {
+                        maxAge: 5*60*1000,
+                        httpOnly:true
+                    })
                     res.status(200).json({
                         msg:"Success"
                     })

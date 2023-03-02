@@ -81,11 +81,13 @@ const loginUser = async(req, res) => {
                                   date: new Date()  ///new date is for handling logout where we forcefully expire the token..
                                 }
                 const token=jwt.sign({
-                    exp: Math.floor(Date.now() / 1000) + (60 * 60),// 1 hour
+                    exp: Math.floor(Date.now() / 1000) + (5 * 60),// 1 hour
                     data: tokenData,
                   },process.env.JWT_SECRET_KEY);
-                return res.headers("Cookie": `jwttoken=${token}; HttpOnly; Secure`)
-                    .status(200).json({
+                res.cookie('jwttoken', token, {
+                    maxAge: 5*60*1000,
+                    httpOnly: true
+                }).status(200).json({
                     status:"success",
                     message:"user logged in",
                     token
