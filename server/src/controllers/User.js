@@ -134,7 +134,7 @@ const getUserInfo = async (req, res) => {                        //here we are g
 }
 
 const updateSelection = (req, res) => {
-        User.findByIdAndUpdate(req.parms.id, req.body).then(data=>{
+        User.findByIdAndUpdate(req.params.userId, req.body).then(data=>{
             res.status(200).json({
                 msg:"Success",
                 result:data

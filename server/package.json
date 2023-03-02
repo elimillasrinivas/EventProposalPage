@@ -4,8 +4,9 @@
   "description": "team Project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon ./src/index.js"
+    "start":"nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "Srinivas,Abhijeet&uttej",
   "license": "ISC",
