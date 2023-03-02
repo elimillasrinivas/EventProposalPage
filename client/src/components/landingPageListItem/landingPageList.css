@@ -1,0 +1,28 @@
+.proposalListArticle{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 8px;
+    opacity: 1;
+    width:18%;
+    margin-bottom: 15px;
+}
+.proposalListArticle:hover{
+  cursor:pointer;
+}
+.proposalListArticle>img{
+    width:100%;
+    height: 173px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.proposalListArticle>ul{
+    list-style: none;
+
+}
+.proposalListArticle>ul>li{
+    font: normal normal 600 14px/20px Open Sans;
+    letter-spacing: 0.64px;
+    color: #575A5D;
+    opacity: 1;
+    
+}

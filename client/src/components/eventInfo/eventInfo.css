@@ -1,0 +1,240 @@
+.eventInfoContainer{
+    position:absolute;
+    top:0px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    width:100vw;
+    height: 100vh;
+}
+.eventInfoContainer>header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.eventInfoContainer>header>section:first-child{
+    display:flex;
+    align-items: center;
+    margin-left: 40px;
+}
+.eventInfoContainer>header>section:first-child>h4:first-child{
+    display:flex;
+    align-items: center;
+    font: normal normal normal 17px/28px Open Sans;
+    letter-spacing: 0px;
+    color: #1A1A1A;
+    opacity: 1;
+}
+.eventInfoContainer>header>section:first-child>h4:nth-child(2){
+    font: normal normal 600 21px/28px Open Sans;
+    letter-spacing: 0px;
+    color: #1A1A1A;
+    opacity: 1;
+}
+.eventInfoContainer>header>section:nth-child(2){
+    display:flex;
+    align-items: center;
+}
+.eventInfopageexit:hover{
+    cursor:pointer;
+    color:red;
+}
+.eventInfoContainer>header>section:nth-child(2)>button{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #0078DD;
+    border-radius: 4px;
+    opacity: 1;
+    margin-right: 40px;
+    font: normal normal 600 19px/26px Open Sans;
+    letter-spacing: 0.19px;
+    color:#64A1F5
+ 
+}
+.eventInfoContainer>header>section:nth-child(2)>button:hover{
+    cursor:pointer;
+}
+.eventInfoBodyContainer{
+    display:flex;
+    margin:0px 40px;
+}
+.eventInfoBodyLeftPart{
+    flex:25%;
+    display:flex;
+    flex-direction: column;
+}
+.eventInfoBodyLeftPart>section:first-child{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 4px;
+    opacity: 1;
+    margin-right: 40px;
+}
+.eventInfoBodyLeftPart>section:first-child>img{
+    width:100%;
+    height:210px;
+    object-fit: cover;
+    border-radius: 8px 8px 0px 0px;
+    opacity: 1;
+    margin-bottom: 0px;
+}
+.eventInfoBodyRightPart{
+    flex:75%;
+}
+.eventInfoBodyLeftPart>section:first-child>h4{
+    background: #EAEAEA 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000003;
+    border-radius: 0px 3px 0px 0px;
+    opacity: 0.57;
+    font: normal normal normal 16px/5px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+    margin-top: 0px;
+    padding-left: 18px;
+}
+.eventInfoBodyLeftPart>section:first-child>h4>span{
+    font: normal normal 600 16px/14px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+}
+.eventInfoBodyLeftPart>section:first-child>ul{
+    list-style: none;
+    padding-left: 0px;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li{
+    margin-left: 18px;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap:3%;
+
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li h4{
+    font: normal normal normal 16px/5px Open Sans;
+    letter-spacing: 0px;
+    color: #767676;
+    opacity: 1;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li span{
+    font: normal normal 600 16px/5px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+    opacity: 1;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:first-child h4{
+    font: normal normal normal 16px/2px Open Sans;
+    letter-spacing: 0px;
+    color: #767676;
+    opacity: 1;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:first-child span{
+    font: normal normal 600 16px/2px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+    opacity: 1;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li p{
+    font: normal normal 600 16px/5px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+    opacity: 1;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:nth-child(3)>section{
+     display:flex;
+     align-items: center;
+
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:nth-child(3)>section>h4{
+    font: normal normal normal 12px/5px Open Sans;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:nth-child(3)>section>span{
+    font: normal normal 600 12px/5px Open Sans;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:nth-child(3)>section>h4{
+    margin-left: 5px;
+}
+.eventInfoBodyLeftPart>section:first-child>ul>li:last-child{
+    display: flex;
+    align-items:center ;
+    justify-content: flex-start;
+    gap:7%;
+}
+.eventInfoBodyLeftPart>section:last-child>section{
+    display:flex;
+    flex-wrap: wrap;
+    gap:10px;
+    background-color: white;
+
+}
+.eventInfoBodyLeftPart>section:last-child>h4{
+    font: normal normal 600 22px/10px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+    opacity: 1;
+}
+.eventInfoBodyLeftPart>section:last-child>section>img{
+    width:28%;
+    height:100px;
+    border-radius: 2px;
+    opacity: 1;
+}
+.eventInfoBodyRightPart{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: white;
+}
+.eventInfoBodyRightPart>section{
+    width:48%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #EDEDED;
+    border-radius: 4px;
+    opacity: 1;
+    padding-left: 15px;
+   
+
+}
+.eventInfoBodyRightPart>section:first-child{
+    min-height: 62%;
+}
+.eventInfoBodyRightPart>section:nth-child(2){
+    min-height: 62%;
+}
+.eventInfoBodyRightPart>section:last-child{
+    min-height: 35%;
+    margin-top: 20px;
+   
+    
+}
+.eventInfoBodyRightPart>section:nth-child(3){
+    min-height: 35%;
+    margin-top: 20px;
+   
+   
+}
+.eventInfoBodyRightPart>section>h4{
+    font: normal normal 600 19px/65px Open Sans;
+    letter-spacing: 0px;
+    color: #1E2022;
+    opacity: 1;
+}
+.eventInfoBodyRightPart>section>p{
+    font: normal normal normal 14px/20px Open Sans;
+    letter-spacing: 0px;
+    color: #767676;
+    opacity: 1;
+}
+.eventInfoBodyRightPart>section>ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.eventInfoBodyRightPart>section>ul>li{
+    font: normal normal normal 14px/20px Open Sans;
+    letter-spacing: 0px;
+    color: #767676;
+    opacity: 1;
+}
+.eventInfoBodyRightPart>section>ul>li>section{
+    display:flex;
+    flex-direction: column;
+}
