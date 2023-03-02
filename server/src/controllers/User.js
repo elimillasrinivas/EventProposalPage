@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 // const express = require("express") ///no need for express so commenting it out....
 const dotenv = require("dotenv");
+const cook = require("cookie-parser");
 dotenv.config();
 
 const registerUser = async(req, res) => {
@@ -87,10 +88,10 @@ const loginUser = async(req, res) => {
                 res.cookie('jwttoken', token, {
                     maxAge: 5*60*1000,
                     httpOnly: true
-                }).status(200).json({
+                })
+                res.status(200).json({
                     status:"success",
-                    message:"user logged in",
-                    token
+                    message:"user logged in"
                 })
             }
             else{

@@ -7,11 +7,13 @@ const vendorRouter = require("./routes/vendor");
 const userRouter = require("./routes/User");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const helmet = require("helmet");
 
 const conn=require("./connection/connect");
 conn();//connection with backend established
 dotenv.config();
 const app = express();
+app.use(helmet());
 app.use(cookieParser());
 app.use(session({
     secret: "secret",
