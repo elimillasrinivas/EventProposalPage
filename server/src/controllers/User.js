@@ -52,55 +52,50 @@ const registerUser = async (req, res) => {
     }
 }
 
-const loginUser = async (req, res) => {
+const loginUser =  (req, res) => {
 
     try {
 
         const { phone, password } = req.body;
-        const user = await User.findOne({ phone });
-        //if user is not present in database...
-        if (!user) {
-            return res.status(200).json({
-                status: "failed",
-                message: "user should register"
-            })
-        }
-        //if user is present we are checking weather the credentials are matching and generating web token accordingly...
-        bcrypt.compare(password, user.password, function (err, result) {
-            if (err) {
-                return res.status(500).json({
-                    status: "failed",
-                    message: err.message
-                })
-            }
-            if (result) {
-                let tokenData = {
-                    data: user,
-                    date: new Date()  ///new date is for handling logout where we forcefully expire the token..
+        User.findOne({ phone }).then(user=>{
+            bcrypt.compare(password, user.password, function (err, result) {
+                if (err) {
+                    return res.status(500).json({
+                        status: "failed",
+                        message: err.message
+                    })
                 }
+                if (result) {
+                    let tokenData = {
+                        data: user,
+                        date: new Date()  ///new date is for handling logout where we forcefully expire the token..
+                    }
+    
+                    const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
+                    const token = jwt.sign({
+                        exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
+                        data: tokenData,
+                    }, process.env.JWT_SECRET_KEY);
+                    res.cookie("jwttoken", token, {
+                        maxAge: 5*60*1000,
+                        httpOnly: true,
+                        secure: false
+                    })
+                    res.status(200).json({
+                        status: "success",
+                        message: "user logged in"
+                    })
+                }
+                else {
+                    res.status(400).json({
+                        status: "failed",
+                        message: "invalid credentials"
+                    })
+                }
+            });
 
-                const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
-                const token = jwt.sign({
-                    exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
-                    data: tokenData,
-                }, process.env.JWT_SECRET_KEY);
-                req.cookie("jwttoken", token, {
-                    maxAge: 5*60*1000,
-                    httpOnly: true,
-                    secure: true
-                })
-                res.status(200).json({
-                    status: "success",
-                    message: "user logged in"
-                })
-            }
-            else {
-                res.status(200).json({
-                    status: "failed",
-                    message: "invalid credentials"
-                })
-            }
-        });
+        })
+
 
     }
     catch (e) {
@@ -121,8 +116,8 @@ const logoutUser = async (req, res) => {
 }
 
 const getUserInfo = async (req, res) => {                        //here we are getting req.result from authentication step
-    if (req.result.data.data.vendorName === undefined) {
-        const data = await User.findById(req.result.data.data._id)
+    if (req.result.vendorName === undefined) {
+        const data = await User.findById(req.result._id)
         res.status(200).json({
             msg: "Success",
             result: data

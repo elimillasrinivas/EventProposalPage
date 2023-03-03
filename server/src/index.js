@@ -6,7 +6,6 @@ const proposalRouter = require("./routes/proposal");
 const vendorRouter = require("./routes/vendor");
 const userRouter = require("./routes/User");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
 
 const conn=require("./connection/connect");
 conn();//connection with backend established
@@ -14,25 +13,12 @@ dotenv.config();
 const app = express();
 app.use(cors({
     credentials:true,
-    origin:"https://animated-strudel-9144b7.netlify.app"
+    origin:"http://localhost:3000"
 }));
 app.use(cookieParser());
-app.use(session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: true,
-        maxAge: 5*60*1000,
-        sameSite: "none"
-    }
-}))
 app.set("trust proxy", 1)
 app.use(express.json());
 
-// mongoose.connect(process.env.MONGO_URI, () => {
-//     console.log("Connected to Mongo Atlas Database");
-// })
 const port=process.env.PORT || 8000
 app.use("/events", proposalRouter);//abhijeeth
 app.use("/users", userRouter);//uttej
