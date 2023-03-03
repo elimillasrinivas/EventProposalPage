@@ -57,7 +57,7 @@ const CreateProposal=()=>{
     }
     const clickHandler=async (e)=>{
         e.preventDefault();
-        axios.post("http://localhost:8000/events/add", allData, { withCredentials:true }).then(data=>{
+        axios.post("https://eventproposalserver.onrender.com/events/add", allData, { withCredentials:true }).then(data=>{
             console.log(data);
             navigate("/view")
         }).catch(err=>{

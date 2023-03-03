@@ -87,7 +87,8 @@ const registerHandler=(e)=>{
                 email:form.email,
                 password:form.password
             }
-             axios.post("http://localhost:8000/vendors/register",data).then((response)=>{
+
+             axios.post("https://eventproposalserver.onrender.com/vendors/register",data).then((response)=>{
                 if(response.data.message==="registered successfully")
                {
                 Swal.fire({
@@ -136,6 +137,7 @@ const registerHandler=(e)=>{
                       })
                 }
              });  
+
         }
         else{
             const data={
@@ -144,7 +146,8 @@ const registerHandler=(e)=>{
                 email:form.email,
                 password:form.password
             }
-             axios.post("http://localhost:8000/users/register",data).then((response)=>{
+
+             axios.post("https://eventproposalserver.onrender.com/users/register",data).then((response)=>{
                if(response.data.message==="registered successfully")
                {
                 Swal.fire({
@@ -193,6 +196,7 @@ const registerHandler=(e)=>{
                       })
                 }
              });  
+
         }
     }
     else{

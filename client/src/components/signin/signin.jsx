@@ -13,7 +13,8 @@ const Signin=()=>{
        if(form.phone.toString().length===10&&form.password.length>0)
        {
         if(vendor){
-            axios.post("http://localhost:8000/vendors/login",form,{withCredentials:true}).then((response)=>{
+
+            axios.post("https://eventproposalserver.onrender.com/vendors/login",form,{withCredentials:true}).then((response)=>{
                 if(response.data.message==="vendor logged in")
                 {
                  Swal.fire({
@@ -68,7 +69,7 @@ const Signin=()=>{
                 }
          });        }
         else{
-            axios.post("http://localhost:8000/users/login",form,{withCredentials:true}).then((response)=>{
+            axios.post("https://eventproposalserver.onrender.com/users/login",form,{withCredentials:true}).then((response)=>{
                 if(response.data.message==="user logged in")
                 {
                  Swal.fire({
@@ -121,6 +122,7 @@ const Signin=()=>{
                       })
                 }
          });
+
         }
        }
        else{

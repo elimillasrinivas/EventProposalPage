@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 const TopBar=({user})=>{
     const navigate=useNavigate()
     const userLogout=()=>{
-        axios.get("http://localhost:8000/users/logout",{withCredentials:true}).then((res)=>{
+        axios.get("https://eventproposalserver.onrender.com/users/logout",{withCredentials:true}).then((res)=>{
            alert("logged out successfully");
            navigate("/");
 

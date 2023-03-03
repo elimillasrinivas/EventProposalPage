@@ -8,6 +8,7 @@ const Proposal = new mongoose.Schema({
     },
     vendorEmail: {
         type: String,
+        required: true,
         trim: true
     },
     vendorId: {
@@ -56,12 +57,12 @@ const Proposal = new mongoose.Schema({
     },
     events: {
         type: String,
-        required: true,
+        default: "This is some dummy data",
         trim: true
     },
     foodPreferences: {
         type: String,
-        required: true,
+        default: "Mutter Paneer, IceCream, Chole Bhature, Veg Biryani",
         trim: true
     },
     eventImage: {

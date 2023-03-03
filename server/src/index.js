@@ -6,27 +6,39 @@ const proposalRouter = require("./routes/proposal");
 const vendorRouter = require("./routes/vendor");
 const userRouter = require("./routes/User");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 const conn=require("./connection/connect");
 conn();//connection with backend established
 dotenv.config();
 const app = express();
-app.use(cookieParser());
-
 app.use(cors({
     credentials:true,
-    origin:"http://localhost:3000",
-    methods: "GET,PUT,POST,DELETE"
-         
+    origin:"https://precious-heliotrope-47becd.netlify.app/view"
 }));
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: "secret",
+    cookie: {
+        secure: true,
+        maxAge: 5*60*1000,
+        sameSite: "none"
+    }
+}
+
+))
+app.use(cookieParser());
+app.set("trust proxy", 1)
 app.use(express.json());
 
-// mongoose.connect(process.env.MONGO_URI, () => {
-//     console.log("Connected to Mongo Atlas Database");
-// })
 const port=process.env.PORT || 8000
 app.use("/events", proposalRouter);//abhijeeth
 app.use("/users", userRouter);//uttej
 app.use("/vendors", vendorRouter);
+app.get("/", (req, res)=>{
+    res.status(200).json({msg:"Welcome"});
+})
 
 app.listen(port, () => {
     console.log(`Server started at Port ${process.env.PORT}`)
