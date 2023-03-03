@@ -11,10 +11,11 @@ const session = require("express-session");
 const conn=require("./connection/connect");
 conn();//connection with backend established
 dotenv.config();
+const reactUrl = process.env.REACT_URL || "https://jovial-kleicha-9e68df.netlify.app";
 const app = express();
 app.use(cors({
     credentials:true,
-    origin:"https://precious-heliotrope-47becd.netlify.app",
+    origin:reactUrl,
 }));
 app.use(session({
     resave: false,
