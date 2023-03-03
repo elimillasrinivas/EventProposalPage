@@ -2,6 +2,7 @@ import "./signin.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Signin=()=>{
     const navigate=useNavigate();
@@ -13,19 +14,124 @@ const Signin=()=>{
        {
         if(vendor){
             axios.post("http://localhost:8000/vendors/login",form,{withCredentials:true}).then((response)=>{
-            console.log(response);
-            navigate("/view")
-         }).catch((error)=>{console.log(error)});
-        }
+                if(response.data.message==="vendor logged in")
+                {
+                 Swal.fire({
+                     position: 'center',
+                     icon: 'success',
+                     title: 'loggedin successfully',
+                     timer: 2000,
+                     timerProgressBar: true,
+                     showConfirmButton: false,
+                   }).then((willNavigate)=>{
+                     if(willNavigate){
+                        navigate("/view")
+                     }
+                   })
+                }
+                else if(response.data.message==="Vendor should register")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Vendor should register',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  }).then((willNavigate)=>{
+                    if(willNavigate){
+                       navigate("/register")
+                    }
+                  })
+               }
+               else if(response.data.message==="invalid credentials")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'invalid vendor name or password',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  })
+               }
+            
+            
+         }).catch((error)=>{
+            if(error.response.data.status==="failed")
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                      })
+                }
+         });        }
         else{
             axios.post("http://localhost:8000/users/login",form,{withCredentials:true}).then((response)=>{
-            console.log(response);
-            navigate("/userLanding")
-         }).catch((error)=>{console.log(error)});
+                if(response.data.message==="user logged in")
+                {
+                 Swal.fire({
+                     position: 'center',
+                     icon: 'success',
+                     title: 'loggedin successfully',
+                     timer: 2000,
+                     timerProgressBar: true,
+                     showConfirmButton: false,
+                   }).then((willNavigate)=>{
+                     if(willNavigate){
+                        navigate("/userLanding")
+                     }
+                   })
+                }
+                else if(response.data.message==="user should register")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'User should register',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  }).then((willNavigate)=>{
+                    if(willNavigate){
+                       navigate("/register")
+                    }
+                  })
+               }
+               else if(response.data.message==="invalid credentials")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'invalid user name or password',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  })
+               }
+            
+         }).catch((error)=>{
+            if(error.response.data.status==="failed")
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                      })
+                }
+         });
         }
        }
        else{
-        alert("fill valid details");
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Fill valid details',
+            showConfirmButton: true,
+            confirmButtonText: 'Ok',
+            // timer: 1500
+          })
        }
     }
     const dataBaseToggleHandler=(e)=>{
