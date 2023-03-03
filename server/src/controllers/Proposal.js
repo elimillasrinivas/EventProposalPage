@@ -2,9 +2,9 @@ const Proposal = require("../models/Proposal");
 
 const createProposal = async (req, res) => {
         const proposal = new Proposal({ ...req.body });
-        proposal.vendorName = req.result.data.vendorName;
-        proposal.vendorId = req.result.data._id;
-        proposal.vendorEmail = req.result.data.email;
+        proposal.vendorName = req.vendor.data.data.vendorName;
+        proposal.vendorId = req.vendor.data.data._id;
+        proposal.vendorEmail = req.vendor.data.data.email;
         await proposal.save().then(data => {
             res.status(201).json({
                 msg: "Success",
@@ -19,15 +19,15 @@ const createProposal = async (req, res) => {
 }
 
 const getProposal = async (req, res) => {
-        await Proposal.find({ vendorId: req.result.data._id }).then(data => {
+        await Proposal.find({ vendorId: req.vendor.data.data._id }).then(data => {
             res.status(200).json({
                 msg: "Success",
                 result: data,
-                vendor:req.result
+                vendor:req.vendor
             }).catch(err=>{
                 res.status(200).json({
                     msg:"VendorId not valid",
-                    vendor:req.result,
+                    vendor:req.vendor,
                     result:err
                 })
             })
@@ -86,7 +86,6 @@ const getAllProposal = async (req, res) => {         //only user can access this
 }
 
 const getAProposal = (req, res) => {                 //we will use this to get the data of proposal the user selected
-    
         Proposal.findById(req.params.proposalId).then(data => {
             res.status(200).json({
                 msg: "Success",
