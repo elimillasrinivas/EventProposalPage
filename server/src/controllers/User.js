@@ -84,7 +84,11 @@ const loginUser = async (req, res) => {
                     exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
                     data: tokenData,
                 }, process.env.JWT_SECRET_KEY);
-                req.session.jwttoken = token;
+                req.cookie("jwttoken", token, {
+                    maxAge: 5*60*1000,
+                    httpOnly: true,
+                    secure: true
+                })
                 res.status(200).json({
                     status: "success",
                     message: "user logged in"
@@ -108,15 +112,16 @@ const loginUser = async (req, res) => {
 }
 
 const logoutUser = async (req, res) => {
-    req.session.jwttoken = ""
-    res.clearCookie("jwttoken")
+    res.cookie("jwttoken", "", {
+        maxAge: 0
+    })
     res.status(200).json({
         message: "Logged Out Successfully"
     })
 }
 
 const getUserInfo = async (req, res) => {                        //here we are getting req.result from authentication step
-    if (req.result.data.vendorName === undefined) {
+    if (req.result.data.data.vendorName === undefined) {
         const data = await User.findById(req.result.data.data._id)
         res.status(200).json({
             msg: "Success",
