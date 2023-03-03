@@ -2,9 +2,9 @@ const Proposal = require("../models/Proposal");
 
 const createProposal = async (req, res) => {
         const proposal = new Proposal({ ...req.body });
-        proposal.vendorName = req.vendor.data.data.vendorName;
-        proposal.vendorId = req.vendor.data.data._id;
-        proposal.vendorEmail = req.vendor.data.data.email;
+        proposal.vendorName = req.result.data.data.vendorName;
+        proposal.vendorId = req.result.data.data._id;
+        proposal.vendorEmail = req.result.data.data.email;
         await proposal.save().then(data => {
             res.status(201).json({
                 msg: "Success",
@@ -19,7 +19,7 @@ const createProposal = async (req, res) => {
 }
 
 const getProposal = async (req, res) => {
-        await Proposal.find({ vendorId: req.vendor.data.data._id }).then(data => {
+        await Proposal.find({ vendorId: req.result.data.data._id }).then(data => {
             res.status(200).json({
                 msg: "Success",
                 result: data,
@@ -66,7 +66,7 @@ const deleteProposal = async (req, res) => {
 }
 
 const getAllProposal = async (req, res) => {         //only user can access this because he don't have vendorName key in his json objet response from backend
-    if (req.result.data.vendorName === undefined) {
+    if (req.result.data.data.vendorName === undefined) {
         await Proposal.find().then(data => {
             res.status(200).json({
                 msg: "Success",

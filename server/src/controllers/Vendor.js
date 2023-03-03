@@ -64,8 +64,11 @@ const loginVendor = (req, res) => {
                     exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
                     data: tokenData,
                 }, jwtSecretKey);
-                req.session.vendortoken = token;
-
+                req.cookie("jwttoken", token, {
+                    maxAge: 5*60*1000,
+                    httpOnly: true,
+                    secure: true
+                })
                 res.status(200).json({
                     msg: "Success"
                 })
@@ -86,8 +89,9 @@ const loginVendor = (req, res) => {
 }
 
 const logoutVendor = async (req, res) => {
-    req.session.vendortoken = "";
-    res.clearCookie("vendortoken")
+    res.cookie("jwttoken", "", {
+        maxAge: 0
+    })
     res.status(200).json({
         msg: "Success",
         result: "Logged Out"
