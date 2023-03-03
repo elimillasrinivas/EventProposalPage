@@ -7,7 +7,6 @@ dotenv.config();
 
 const registerVendor = async (req, res) => {
     try {
-
         const data = await Vendor.findOne({ email: req.body.email });
         if (data) {
             return res.status(200).json({
@@ -64,10 +63,10 @@ const loginVendor = (req, res) => {
                     exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
                     data: tokenData,
                 }, jwtSecretKey);
-                req.cookie("jwttoken", token, {
+                res.cookie("jwttoken", token, {
                     maxAge: 5*60*1000,
                     httpOnly: true,
-                    secure: true
+                    secure: false
                 })
                 res.status(200).json({
                     msg: "Success"
@@ -99,8 +98,8 @@ const logoutVendor = async (req, res) => {
 }
 
 const getVendorInfo = (req, res) => {
-    if (req.result.data.vendorName !== undefined) {
-        Vendor.findById(req.result.data._id).then(data => {
+    if (req.result.vendorName !== undefined) {
+        Vendor.findById(req.result._id).then(data => {
             res.status(200).json({
                 msg: "Success",
                 vendorName: data.vendorName,

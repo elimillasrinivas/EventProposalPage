@@ -2,9 +2,10 @@ const Proposal = require("../models/Proposal");
 
 const createProposal = async (req, res) => {
         const proposal = new Proposal({ ...req.body });
-        proposal.vendorName = req.result.data.data.vendorName;
-        proposal.vendorId = req.result.data.data._id;
-        proposal.vendorEmail = req.result.data.data.email;
+        proposal.vendorName = req.result.vendorName;
+        proposal.vendorId = req.result._id;
+        proposal.vendorEmail = req.result.email;
+        console.log(proposal);
         await proposal.save().then(data => {
             res.status(201).json({
                 msg: "Success",
@@ -19,17 +20,17 @@ const createProposal = async (req, res) => {
 }
 
 const getProposal = async (req, res) => {
-        await Proposal.find({ vendorId: req.result.data.data._id }).then(data => {
+        await Proposal.find({ vendorId: req.result._id }).then(data => {
             res.status(200).json({
                 msg: "Success",
                 result: data,
                 vendor:req.vendor
-            }).catch(err=>{
-                res.status(200).json({
-                    msg:"VendorId not valid",
-                    vendor:req.vendor,
-                    result:err
-                })
+            })
+        }).catch(err=>{
+            res.status(200).json({
+                msg:"VendorId not valid",
+                vendor:req.vendor,
+                result:err
             })
         })
 }
@@ -66,7 +67,7 @@ const deleteProposal = async (req, res) => {
 }
 
 const getAllProposal = async (req, res) => {         //only user can access this because he don't have vendorName key in his json objet response from backend
-    if (req.result.data.data.vendorName === undefined) {
+    if (req.result.vendorName === undefined) {
         await Proposal.find().then(data => {
             res.status(200).json({
                 msg: "Success",
