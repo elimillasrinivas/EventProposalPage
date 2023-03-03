@@ -25,18 +25,18 @@ const createProposal = async (req, res) => {
 }
 
 const getProposal = async (req, res) => {
-    if (req.result.data.vendorName !== undefined) {
         await Proposal.find({ vendorId: req.result.data._id }).then(data => {
             res.status(200).json({
                 msg: "Success",
                 result: data
+            }).catch(err=>{
+                res.status(200).json({
+                    msg:"VendorId not valid",
+                    vendor:req.result,
+                    result:err
+                })
             })
         })
-    } else {
-        res.status(400).json({
-            msg: "Failure"
-        })
-    }
 }
 
 const updateProposal = async (req, res) => {
