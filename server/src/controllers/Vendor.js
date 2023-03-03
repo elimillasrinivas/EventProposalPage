@@ -86,9 +86,7 @@ const loginVendor = (req, res) => {
 }
 
 const logoutVendor = async (req, res) => {
-    res.cookie("jwttoken", "", {
-        maxAge: 0
-    })
+    req.session.jwttoken = "";
     res.clearCookie("jwttoken")
     res.status(200).json({
         msg: "Success",

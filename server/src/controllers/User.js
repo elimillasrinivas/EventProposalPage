@@ -108,9 +108,7 @@ const loginUser = async (req, res) => {
 }
 
 const logoutUser = async (req, res) => {
-    res.cookie("jwttoken", "", {     ///expiring the cookie forcefully and emptying its field??
-        maxAge: 0
-    })
+    req.session.jwttoken = ""
     res.clearCookie("jwttoken")
     res.status(200).json({
         message: "Logged Out Successfully"
