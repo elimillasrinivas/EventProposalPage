@@ -3,13 +3,14 @@ import "./register.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const Register=()=>{
     const navigate=useNavigate();
     const [form,setForm]=useState({userName:"",email:"",phone:"",password:""});
     const [vendor,setVendor]=useState(false);
     const [error,errorHandler]=useState({userName:{isValid:true,message:""},email:{isValid:true,message:""},phone:{isValid:true,message:""},
     password:{isValid:true,message:""}});
-    const [confirmPassword,setConfirmPassword]=useState({isValid:true,message:""});
+    const [confirmPassword,setConfirmPassword]=useState({isValid:false,message:""});
     const functionConfirm=(e)=>{
         if(e.target.value===form.password && form.password!=="")
         {
@@ -77,7 +78,7 @@ const Register=()=>{
 }
 const registerHandler=(e)=>{
     e.preventDefault();
-    if(form.userName.length>0&&form.phone>0&&form.email.length>0&&form.password.length>0)
+    if(form.userName.length>0&&form.phone>0&&form.email.length>0&&form.password.length>0&&confirmPassword.isValid)
     {
         if(vendor){
             const data={
@@ -87,9 +88,54 @@ const registerHandler=(e)=>{
                 password:form.password
             }
              axios.post("http://localhost:8000/vendors/register",data).then((response)=>{
-                console.log(response);
-                navigate("/")
-             }).catch((error)=>{console.log(error)});  
+                if(response.data.message==="registered successfully")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Vendor registration successful',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  }).then((willNavigate)=>{
+                    if(willNavigate){
+                        navigate("/");
+                    }
+                  })
+               }
+               else if(response.data.message==="Vendor already exist")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'vendorMail already registered',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  })
+               }
+               else if(response.data.message==="Mobile number already registered")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'phoneNumber already registered',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  })
+               }
+                 
+             }).catch((error)=>{
+                if(error.response.data.status==="failed")
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                      })
+                }
+             });  
         }
         else{
             const data={
@@ -99,13 +145,66 @@ const registerHandler=(e)=>{
                 password:form.password
             }
              axios.post("http://localhost:8000/users/register",data).then((response)=>{
-                console.log(response);
-                navigate("/")
-             }).catch((error)=>{console.log(error)});  
+               if(response.data.message==="registered successfully")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'User registration successful',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  }).then((willNavigate)=>{
+                    if(willNavigate){
+                        navigate("/");
+                    }
+                  })
+               }
+               else if(response.data.message==="user already exist")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'userMail already registered',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  })
+               }
+               else if(response.data.message==="mobile number already registered")
+               {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'phoneNumber already registered',
+                    showConfirmButton: true,
+                    confirmButtonText: 'ok',
+                    // timer: 1500
+                  })
+               }
+               
+             }).catch((error)=>{
+                if(error.response.data.status==="failed")
+                {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                      })
+                }
+             });  
         }
     }
     else{
-        console.log("no");
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'All Fields are manidatory',
+            showConfirmButton: true,
+            confirmButtonText: 'Ok',
+            // timer: 1500
+          })
+          
     }
 }
 const dataBaseToggleHandler=(e)=>{
