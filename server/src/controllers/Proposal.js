@@ -22,7 +22,8 @@ const getProposal = async (req, res) => {
         await Proposal.find({ vendorId: req.result.data._id }).then(data => {
             res.status(200).json({
                 msg: "Success",
-                result: data
+                result: data,
+                vendor:req.result
             }).catch(err=>{
                 res.status(200).json({
                     msg:"VendorId not valid",
