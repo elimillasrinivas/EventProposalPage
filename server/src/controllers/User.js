@@ -76,11 +76,7 @@ const loginUser =  (req, res) => {
                         exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
                         data: tokenData,
                     }, process.env.JWT_SECRET_KEY);
-                    res.cookie("jwttoken", token, {
-                        maxAge: 5*60*1000,
-                        httpOnly: true,
-                        secure: false
-                    })
+                    req.session.jwttoken = token
                     res.status(200).json({
                         status: "success",
                         message: "user logged in"
@@ -107,9 +103,7 @@ const loginUser =  (req, res) => {
 }
 
 const logoutUser = async (req, res) => {
-    res.cookie("jwttoken", "", {
-        maxAge: 0
-    })
+    req.session.jwttoken = "";
     res.status(200).json({
         message: "Logged Out Successfully"
     })

@@ -6,6 +6,7 @@ const proposalRouter = require("./routes/proposal");
 const vendorRouter = require("./routes/vendor");
 const userRouter = require("./routes/User");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 const conn=require("./connection/connect");
 conn();//connection with backend established
@@ -15,6 +16,18 @@ app.use(cors({
     credentials:true,
     origin:"http://localhost:3000"
 }));
+app.use(session({
+    resave: false,
+    saveUninitialized: false,
+    secret: "secret",
+    cookie: {
+        secure: true,
+        maxAge: 5*60*1000,
+        sameSite: "none"
+    }
+}
+
+))
 app.use(cookieParser());
 app.set("trust proxy", 1)
 app.use(express.json());

@@ -63,11 +63,7 @@ const loginVendor = (req, res) => {
                     exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
                     data: tokenData,
                 }, jwtSecretKey);
-                res.cookie("jwttoken", token, {
-                    maxAge: 5*60*1000,
-                    httpOnly: true,
-                    secure: false
-                })
+                req.session.jwttoken = token;
                 res.status(200).json({
                     msg: "Success"
                 })
