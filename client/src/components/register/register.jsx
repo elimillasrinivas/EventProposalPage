@@ -97,7 +97,6 @@ const registerHandler=(e)=>{
                     title: 'Vendor registration successful',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
-                    // timer: 1500
                   }).then((willNavigate)=>{
                     if(willNavigate){
                         navigate("/");
@@ -112,7 +111,6 @@ const registerHandler=(e)=>{
                     title: 'vendorMail already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
-                    // timer: 1500
                   })
                }
                else if(response.data.message==="Mobile number already registered")
@@ -123,12 +121,11 @@ const registerHandler=(e)=>{
                     title: 'phoneNumber already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
-                    // timer: 1500
                   })
                }
                  
              }).catch((error)=>{
-                if(error.response.data.status==="failed")
+                if(error)
                 {
                     Swal.fire({
                         icon: 'error',
@@ -156,7 +153,6 @@ const registerHandler=(e)=>{
                     title: 'User registration successful',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
-                    // timer: 1500
                   }).then((willNavigate)=>{
                     if(willNavigate){
                         navigate("/");
@@ -171,7 +167,6 @@ const registerHandler=(e)=>{
                     title: 'userMail already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
-                    // timer: 1500
                   })
                }
                else if(response.data.message==="mobile number already registered")
@@ -182,12 +177,11 @@ const registerHandler=(e)=>{
                     title: 'phoneNumber already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
-                    // timer: 1500
                   })
                }
                
              }).catch((error)=>{
-                if(error.response.data.status==="failed")
+                if(error)
                 {
                     Swal.fire({
                         icon: 'error',
@@ -206,7 +200,6 @@ const registerHandler=(e)=>{
             title: 'All Fields are manidatory',
             showConfirmButton: true,
             confirmButtonText: 'Ok',
-            // timer: 1500
           })
           
     }

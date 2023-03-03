@@ -2,8 +2,7 @@ import TopBar from "../topBar/topbar";
 import {ChevronLeft,ArrowBack} from "@mui/icons-material";
 import axios from "axios";
 import "./eventInfo.css";
-// import {smallData} from "../../data"
-
+import Swal from "sweetalert2";
 const EventInfo=(props)=>{
     const closeEventInfoHandler=()=>{
         props.close[props.ind]=false;
@@ -16,14 +15,24 @@ const EventInfo=(props)=>{
            
             axios.put(`https://eventproposalserver.onrender.com/users/${props.user}`,{select:props.show._id})
             .then((response)=>{
-                axios.get(`https://eventproposalserver.onrender.com/events/${props.show._id}`,{withCredentials:true})
-                .then((res)=>{
-                    props.setSelect({isValid:true,data:res.data.result})
-                    
-                    console.log(res.data.result);
-                    closeEventInfoHandler();
-                    
-                }).catch((e)=>{console.log(e)})
+                Swal.fire({
+                    title: 'Are you sure you want to add it to your selection',
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: 'Yes',
+                    denyButtonText: `No`,
+                  }).then((result) => {
+                  
+                    if (result.isConfirmed) {
+                        axios.get(`https://eventproposalserver.onrender.com/events/${props.show._id}`,{withCredentials:true})
+                        .then((res)=>{
+                            props.setSelect({isValid:true,data:res.data.result});
+                            closeEventInfoHandler();
+                        }).catch((e)=>{console.log(e)})
+                        
+                    } 
+                  })
+               
             })
                                  
             .catch((e)=>{console.log(e)})
@@ -31,7 +40,12 @@ const EventInfo=(props)=>{
 
         }
         else{
-            alert("user can select only one Item")
+           
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'User can select only one eventProposal',
+              })
         }
     }
     return(

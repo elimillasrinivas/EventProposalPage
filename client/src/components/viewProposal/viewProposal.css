@@ -10,6 +10,7 @@
     width: 1000px;
     border: 1px solid black;
     margin: 20px auto;
+    border-radius: 10px;
 }
 .proposal .proposalFooter .details{
     display:flex;
@@ -38,6 +39,12 @@
 
 .proposal .proposalFooter .editIcon{
     margin-right: 20px;
+}
+.proposal .proposalFooter .editIcon:hover{
+    cursor:pointer;
+}
+.proposal .proposalFooter .deleteIcon:hover{
+    cursor: pointer;
 }
 
 #searchProposals{
@@ -70,4 +77,7 @@
     border-radius: 20px;
     color: green;
     text-shadow: 0px 0px 5px white;
+}
+#searchButton:hover{
+  cursor:pointer;
 }

@@ -4,20 +4,24 @@
     height:200px;
     background-image: url("../../../public/images/entrancePagetopPart.jpg");
     background-size:cover;
-    opacity: 0.85;
+    /* opacity: 0.85; */
     position:sticky;
     top:60px;
     margin-bottom: 30px;
 }
+.landingPagescrollSection{
+    height:calc(100vh - 260px);
+    overflow-y: scroll;   
+}
 .landingPageProposalsContainer{
     margin:20px 40px;
-    height:calc(100vh - 280px);
-    overflow-y: scroll;   
+    /* height:calc(100vh - 280px);
+    overflow-y: scroll;    */
 }
 .landingPageProposalsContainerafterSelection{
     margin:20px 40px;
-    height:calc(100vh - 380px);
-    overflow-y: scroll;   
+    /* height:calc(100vh - 380px);
+    overflow-y: scroll;    */
 }
 ::-webkit-scrollbar{
     width:10px;

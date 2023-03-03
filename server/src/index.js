@@ -14,16 +14,16 @@ dotenv.config();
 const app = express();
 app.use(cors({
     credentials:true,
-    origin:"https://precious-heliotrope-47becd.netlify.app/view"
+    origin:"http://localhost:3000",
 }));
 app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: "secret",
     cookie: {
-        secure: true,
-        maxAge: 5*60*1000,
-        sameSite: "none"
+        secure:true,            ////secre should be true for https
+        maxAge: 60*60*1000,
+        sameSite: "none"       //////none for https............
     }
 }
 
@@ -35,7 +35,7 @@ app.use(express.json());
 const port=process.env.PORT || 8000
 app.use("/events", proposalRouter);//abhijeeth
 app.use("/users", userRouter);//uttej
-app.use("/vendors", vendorRouter);
+app.use("/vendors", vendorRouter);//srinivas
 app.get("/", (req, res)=>{
     res.status(200).json({msg:"Welcome"});
 })

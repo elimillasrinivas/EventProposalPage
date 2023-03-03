@@ -48,10 +48,12 @@ const registerVendor = async (req, res) => {
         })
     }
 }
-const loginVendor = (req, res) => {
-
+const loginVendor = async (req, res) => {
+   try{
     const { phone, password } = req.body;
-    Vendor.findOne({ phone: phone }).then(data => {
+    const data=await Vendor.findOne({ phone: phone });
+    if(data)
+    {
         bcrypt.compare(password, data.password).then(result => {
             if (result) {
                 let tokenData = {
@@ -60,7 +62,7 @@ const loginVendor = (req, res) => {
                 }
                 const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
                 const token = jwt.sign({
-                    exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
+                    exp: Math.floor(Date.now() / 1000) + (60 * 60),// 60 min
                     data: tokenData,
                 }, jwtSecretKey);
                 req.session.jwttoken = token;
@@ -68,20 +70,26 @@ const loginVendor = (req, res) => {
                     msg: "Success"
                 })
             } else {
-                res.status(401).json({
+                res.status(200).json({
                     msg: "Unauthorized, Incorrect password"
                 })
             }
 
-        });
-    }).catch((e) => {
-        res.status(401).json({
-            msg: "Unauthorized, Incorrect Credentials"
-        })
     })
-
-
+   }
+   else{
+    res.status(200).json({
+        message:"vendor not registered"
+    })
+   }
 }
+catch(e){
+    res.status(400).json({
+        message:e.message
+    })
+}
+}
+
 
 const logoutVendor = async (req, res) => {
     res.cookie("jwttoken", "", {

@@ -1,22 +1,22 @@
 const Proposal = require("../models/Proposal");
 
 const createProposal = async (req, res) => {
-        const proposal = new Proposal({ ...req.body });
+        try{const proposal = new Proposal({ ...req.body });
         proposal.vendorName = req.result.vendorName;
         proposal.vendorId = req.result._id;
         proposal.vendorEmail = req.result.email;
-        console.log(proposal);
         await proposal.save().then(data => {
             res.status(201).json({
                 msg: "Success",
                 result: data
             })
-        }).catch(err => {
+        })}
+        catch(e){
             res.status(400).json({
-                msg: "Failure",
-                result: err
+                msg:"empty fields",
+                result:e
             })
-        })
+        }
 }
 
 const getProposal = async (req, res) => {
