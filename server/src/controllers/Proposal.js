@@ -1,7 +1,6 @@
 const Proposal = require("../models/Proposal");
 
 const createProposal = async (req, res) => {
-    if (req.result.data.vendorName !== undefined) {
         const proposal = new Proposal({ ...req.body });
         proposal.vendorName = req.result.data.vendorName;
         proposal.vendorId = req.result.data._id;
@@ -17,11 +16,6 @@ const createProposal = async (req, res) => {
                 result: err
             })
         })
-    } else {
-        res.status(400).json({
-            msg: "Failure"
-        })
-    }
 }
 
 const getProposal = async (req, res) => {
