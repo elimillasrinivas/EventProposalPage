@@ -15,13 +15,13 @@ const Signin=()=>{
         if(vendor){
 
             axios.post("https://eventproposalserver.onrender.com/vendors/login",form,{withCredentials:true}).then((response)=>{
-                if(response.data.message==="vendor logged in")
+                if(response.data.msg==="Success")
                 {
                  Swal.fire({
                      position: 'center',
                      icon: 'success',
                      title: 'loggedin successfully',
-                     timer: 2000,
+                     timer: 1000,
                      timerProgressBar: true,
                      showConfirmButton: false,
                    }).then((willNavigate)=>{
@@ -30,36 +30,30 @@ const Signin=()=>{
                      }
                    })
                 }
-                else if(response.data.message==="Vendor should register")
-               {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'Vendor should register',
-                    showConfirmButton: true,
-                    confirmButtonText: 'ok',
-                    // timer: 1500
-                  }).then((willNavigate)=>{
-                    if(willNavigate){
-                       navigate("/register")
-                    }
-                  })
-               }
-               else if(response.data.message==="invalid credentials")
-               {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'invalid vendor name or password',
-                    showConfirmButton: true,
-                    confirmButtonText: 'ok',
-                    // timer: 1500
-                  })
-               }
-            
+                else if(response.data.msg==="Unauthorized, Incorrect password")
+                {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'invalid vendor name or password',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ok',
+                      }) 
+                }
+                else if(response.data.message==="vendor not registered")
+                {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'vendor not registered',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ok',
+                      })
+                }
+               
             
          }).catch((error)=>{
-            if(error.response.data.status==="failed")
+            if(error)
                 {
                     Swal.fire({
                         icon: 'error',
@@ -76,7 +70,7 @@ const Signin=()=>{
                      position: 'center',
                      icon: 'success',
                      title: 'loggedin successfully',
-                     timer: 2000,
+                     timer: 1000,
                      timerProgressBar: true,
                      showConfirmButton: false,
                    }).then((willNavigate)=>{
@@ -85,35 +79,32 @@ const Signin=()=>{
                      }
                    })
                 }
-                else if(response.data.message==="user should register")
-               {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'User should register',
-                    showConfirmButton: true,
-                    confirmButtonText: 'ok',
-                    // timer: 1500
-                  }).then((willNavigate)=>{
-                    if(willNavigate){
-                       navigate("/register")
-                    }
-                  })
-               }
-               else if(response.data.message==="invalid credentials")
-               {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'error',
-                    title: 'invalid user name or password',
-                    showConfirmButton: true,
-                    confirmButtonText: 'ok',
-                    // timer: 1500
-                  })
-               }
+                else if(response.data.message==="invalid credentials")
+                {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Invalid credentials',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ok',
+                      })
+    
+                }
+                else if(response.data.message==="user not registered")
+                {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'user should register',
+                        showConfirmButton: true,
+                        confirmButtonText: 'ok',
+                      })
+                }
             
          }).catch((error)=>{
-            if(error.response.data.status==="failed")
+            console.log(error);
+           
+             if(error)
                 {
                     Swal.fire({
                         icon: 'error',
@@ -132,7 +123,6 @@ const Signin=()=>{
             title: 'Fill valid details',
             showConfirmButton: true,
             confirmButtonText: 'Ok',
-            // timer: 1500
           })
        }
     }

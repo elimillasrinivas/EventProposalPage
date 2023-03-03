@@ -3,7 +3,8 @@ import "./createProposal.css"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import HeaderDashboard from "../vendorheaderDashBoard/HeaderDashboard"
+import HeaderDashboard from "../vendorheaderDashBoard/HeaderDashboard";
+import Swal from "sweetalert2";
 
 const CreateProposal=()=>{
     const navigate = useNavigate();
@@ -28,41 +29,59 @@ const CreateProposal=()=>{
     const valueHandler=(e)=>{
         setAllData({...allData,[e.target.name]:e.target.value})
     }
-    const uploadEventImage=async ()=>{
+   
+    const uploadEventImage=()=>{
         if(eventImage){
-            const data=new FormData();
-            data.append("file",eventImage);
-            data.append("upload_preset","uttej2233");
-            const res=await axios.post("https://api.cloudinary.com/v1_1/db8cyhega/image/upload",data);
-            console.log(res.data.url);
-            setAllData({...allData,eventImage:res.data.url})
+             uploadImages(eventImage)
+            .then((res)=>{ setAllData({...allData, eventImage:res})
+            
+           });
         }
     }
-    const uploadSetVenueImage=()=>{
-        if(venueImage.length>0)
-        {
-            let urlArr=[];
-            venueImage.map(async (value)=>{
-                const data=new FormData();
-            data.append("file",value);
-            data.append("upload_preset","uttej2233");
-            const res=await axios.post("https://api.cloudinary.com/v1_1/db8cyhega/image/upload",data);
-            console.log(res.data.url);
-            urlArr.push(res.data.url);
-            //[url1,uel2,url2]
+    const uploadImages = async(val) => {
+        const data=new FormData();
+        data.append("file",val);
+        data.append("upload_preset","uttej2233");
+        return axios.post("https://api.cloudinary.com/v1_1/db8cyhega/image/upload",data).then(res=>{
+            return res.data.url
+        })
+    }
+    const uploadSetVenueImage=async()=>{
+        if(venueImage.length>0){
+            let urlArr = venueImage.map(val=>{
+                return uploadImages(val);
             })
-            setAllData({...allData,venueImage:urlArr})
-
+            let result = await Promise.all(urlArr).then(res=>{
+                setAllData({...allData, venueImage:res});
+            })
         }
     }
     const clickHandler=async (e)=>{
         e.preventDefault();
         axios.post("https://eventproposalserver.onrender.com/events/add", allData, { withCredentials:true }).then(data=>{
-            console.log(data);
-            navigate("/view")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'proposal created successfully',
+                timer: 1000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+              }).then((willNavigate)=>{
+                if(willNavigate){
+                   navigate("/view")
+                }
+              })
         }).catch(err=>{
-            console.log(err);
-            alert("Invalid or Empty data provided.")
+            
+            Swal.fire({
+                position: 'center',
+                icon: 'warning',
+                title: 'All fields are manidatory',
+                
+                showConfirmButton: true,
+                confirmButtonText:"ok"
+                
+              })
         })
     }
 
@@ -131,8 +150,8 @@ const CreateProposal=()=>{
                     </section>
                     <section>
                         <label htmlFor="formDescription">Description</label>
-                        <textarea id="formDescription" name="description" onChange={valueHandler} value={allData.description}></textarea>
-                        {/* <input type="text" id="formDescription" name="description" onChange={valueHandler} value={allData.description} /> */}
+                        <textarea id="formDescription" name="description" onChange={valueHandler} value={allData.description} style={{resize: "none"}}></textarea>
+                       
                      </section>
                 </section>
                 <section className="proposalPostingFormBodyRightPart">
@@ -147,7 +166,7 @@ const CreateProposal=()=>{
                     </section>
                     <section>
                         <label>Venue Images</label>
-                        <input type="file" accept="image/*" multiple name="venueImage" onChange={(e)=>{setVenueImage([...e.target.files]);
+                        <input type="file" accept="image/*" multiple name="venueImage" max="5" onChange={(e)=>{setVenueImage([...e.target.files]);
                         setVenImg([...e.target.files]);
                         }} onBlur={uploadSetVenueImage} />
                     </section>
@@ -170,13 +189,13 @@ const CreateProposal=()=>{
                     </section>
                     <section>
                         <label>Food Preferences</label>
-                        <textarea name="foodPreferences" onChange={valueHandler} value={allData.foodPreferences}></textarea>
-                        {/* <input type="text" name="foodPreferences" onChange={valueHandler} value={allData.foodPreferences}/> */}
+                        <textarea name="foodPreferences" onChange={valueHandler} value={allData.foodPreferences} style={{resize: "none"}}></textarea>
+                        
                     </section>
                     <section>
                         <label>Events</label>
-                        <textarea name="events" onChange={valueHandler} value={allData.events}></textarea>
-                        {/* <input type="text" name="events" onChange={valueHandler} value={allData.events}/> */}
+                        <textarea name="events" onChange={valueHandler} value={allData.events} style={{resize: "none"}}></textarea>
+                        
                     </section>
                 </section>
             </section>

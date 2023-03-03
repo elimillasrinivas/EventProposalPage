@@ -44,3 +44,6 @@
 #headerDashboard>button:hover{
     cursor:pointer;
 }
+#logout:hover{
+    cursor:pointer;
+}

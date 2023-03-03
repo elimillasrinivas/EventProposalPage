@@ -67,9 +67,11 @@ const Proposal = new mongoose.Schema({
     },
     eventImage: {
         type:String,
+        required:true
     },
     venueImage:{
-        type:Array
+        type:Array,
+        required:true
     }
 })
 

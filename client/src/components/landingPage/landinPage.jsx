@@ -1,19 +1,16 @@
 import TopBar from "../topBar/topbar"
 import "./landingPage.css"
-// import {data} from "../../data"
 import LandingPageListItem from "../landingPageListItem/landingPageList"
 import { useState } from "react";
 import {Delete} from "@mui/icons-material"
 import { useEffect } from "react";
 import axios from "axios";
 const LandingPage=()=>{
-    
     const [selected,setSelected]=useState({isValid:false,data:{}});
     const [arr,setArr]=useState(Array(selected.data.length).fill(false));
     const [userInfo,setUserInfo]=useState({});
     const [proposals,setProposals]=useState([]);
     const userSelectionDeleteHandler=()=>{
-        // selected={isValid:false,data:{}};45y
         console.log(userInfo._id);
         axios.put(`https://eventproposalserver.onrender.com/users/${userInfo._id}`,{select:""})
         .then((response)=>{setSelected({isValid:false,data:{}})})
@@ -22,7 +19,6 @@ const LandingPage=()=>{
     const retriveUserInfo=()=>{
         axios.get("https://eventproposalserver.onrender.com/users/info",{withCredentials:true})
         .then((response)=>{
-            console.log(response.data.result);
             setUserInfo(response.data.result);
             if(response.data.result.select)
             {
@@ -33,19 +29,9 @@ const LandingPage=()=>{
             else{
                 setSelected({isValid:false,data:{}})
             }
+
         }).catch((e)=>{console.log(e)});
     }
-    // const retriveUserSelection=()=>{
-    //     if(userInfo.select==="")
-    //     {
-    //           console.log("no selection");
-    //     }
-    //     else{
-    //         axios.get(`http://localhost:8000/events/${userInfo.select}`,{withCredentials:true})
-    //         .then((response)=>{setSelected({isValid:true,data:response.data.result})})
-    //         .catch((e)=>{console.log(e)});
-    //     }
-    // }
     const retriveProposals=()=>{
         axios.get("https://eventproposalserver.onrender.com/events/all",{withCredentials:true})
         .then((response)=>{
@@ -54,9 +40,6 @@ const LandingPage=()=>{
         }).catch((e)=>{console.log(e)});
     }
     useEffect(()=>{
-       
-      
-        // retriveUserSelection();
         retriveUserInfo();
         retriveProposals();
         
@@ -69,6 +52,7 @@ const LandingPage=()=>{
             <section className="landingPageImageSection">
 
             </section>
+            <section  className="landingPagescrollSection">
             {
                 selected.isValid?<h4 className="landingPageSelectedFieldHeading">Selected</h4>:null
             }
@@ -93,6 +77,7 @@ const LandingPage=()=>{
                         })
                     }
                   </section>
+            </section>
             </section>
 
         </article>

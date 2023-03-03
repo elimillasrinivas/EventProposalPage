@@ -52,12 +52,15 @@ const registerUser = async (req, res) => {
     }
 }
 
-const loginUser =  (req, res) => {
+const loginUser =async  (req, res) => {
 
     try {
 
         const { phone, password } = req.body;
-        User.findOne({ phone }).then(user=>{
+        const user=await User.findOne({ phone });
+        if(user)
+        {
+        
             bcrypt.compare(password, user.password, function (err, result) {
                 if (err) {
                     return res.status(500).json({
@@ -73,7 +76,7 @@ const loginUser =  (req, res) => {
     
                     const jwtSecretKey = process.env.JWT_SECRET_KEY || "secret";
                     const token = jwt.sign({
-                        exp: Math.floor(Date.now() / 1000) + (5 * 60),// 5 min
+                        exp: Math.floor(Date.now() / 1000) + (60 * 60),// 5 min
                         data: tokenData,
                     }, process.env.JWT_SECRET_KEY);
                     req.session.jwttoken = token
@@ -83,14 +86,21 @@ const loginUser =  (req, res) => {
                     })
                 }
                 else {
-                    res.status(400).json({
+                    res.status(200).json({
                         status: "failed",
                         message: "invalid credentials"
                     })
                 }
+                
             });
+        }
+        else{
+            res.status(200).json({
+                message:"user not registered"
+            })
+        }
 
-        })
+   
 
 
     }

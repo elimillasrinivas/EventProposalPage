@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import HeaderDashboard from "../vendorheaderDashBoard/HeaderDashboard"
+import Swal from "sweetalert2";
 
 
 const UpdateProposal=({update, setUpdate})=>{
@@ -42,7 +43,6 @@ const UpdateProposal=({update, setUpdate})=>{
     const uploadEventImage=async()=>{
         if(eventImage){
             let res = await uploadImages(eventImage)
-            console.log("EventImages",res);
             setAllData({...allData, eventImage:res});
         }
     }
@@ -67,10 +67,20 @@ const UpdateProposal=({update, setUpdate})=>{
     const clickHandler=async (e)=>{
         e.preventDefault();
         axios.put(`https://eventproposalserver.onrender.com/events/${update}`, allData).then(data=>{
-            console.log(data);
-            navigate("/view")
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'proposal updated successfully',
+                timer: 1000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+              }).then((willNavigate)=>{
+                if(willNavigate){
+                   navigate("/view")
+                }
+              })
+
         }).catch(err=>{
-            console.log(err);
             alert("Invalid Data filled or Empty Field")
             navigate("/view");
         })
@@ -143,7 +153,7 @@ const UpdateProposal=({update, setUpdate})=>{
                     <section>
                         <label htmlFor="formDescription">Description</label>
                         <textarea id="formDescription" name="description" onChange={valueHandler} value={allData.description}></textarea>
-                        {/* <input type="text" id="formDescription" name="description" onChange={valueHandler} value={allData.description} /> */}
+                       
                      </section>
                 </section>
                 <section className="proposalPostingFormBodyRightPart">
@@ -188,12 +198,10 @@ const UpdateProposal=({update, setUpdate})=>{
                     <section>
                         <label>Food Preferences</label>
                         <textarea name="foodPreferences" onChange={valueHandler} value={allData.foodPreferences}></textarea>
-                        {/* <input type="text" name="foodPreferences" onChange={valueHandler} value={allData.foodPreferences}/> */}
                     </section>
                     <section>
                         <label>Events</label>
                         <textarea name="events" onChange={valueHandler} value={allData.events}></textarea>
-                        {/* <input type="text" name="events" onChange={valueHandler} value={allData.events}/> */}
                     </section>
                 </section>
             </section>
