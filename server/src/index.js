@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 app.use(cors({
     credentials:true,
-    origin:"https://animated-strudel-9144b7.netlify.app"
+    origin:"https://precious-heliotrope-47becd.netlify.app/view"
 }));
 app.use(cookieParser());
 app.use(session({
