@@ -1,11 +1,23 @@
 import "./signin.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Signin=()=>{
     const navigate=useNavigate();
+    const checkSession = () => {
+        axios.get("https://eventproposalserver.onrender.com/check", { withCredentials:true }).then((res)=>{
+            if(res.data.msg==="vendor"){
+                navigate("/view");
+            }else if(res.data.msg==="user"){
+                navigate("/userLanding")
+            }
+        }).catch((err)=>{
+            console.log("Failed Checking",err);
+        })
+    }
+    useEffect(()=>{checkSession()},[])
     const [form,setForm]=useState({phone:"",password:""});
     const [vendor,setVendor]=useState(false);
     const loginHandler=(e)=>{

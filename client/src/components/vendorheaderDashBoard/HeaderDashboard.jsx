@@ -7,6 +7,22 @@ import Swal from "sweetalert2";
 
 const HeaderDashboard = () => {
     const navigate = useNavigate();
+    const checkSession = () => {
+        axios.get("https://eventproposalserver.onrender.com/check", { withCredentials: true }).then((res) => {
+            if (res.data.msg !== "vendor") {
+                navigate("/");
+            } else {
+                axios.get("hthttps://eventproposalserver.onrender.com/vendors/info", { withCredentials: true }).then(data => {
+                    setVendorName(data.data.vendorName);
+                }).catch(err => {
+                    console.log(err);
+                })
+            }
+        }).catch((err) => {
+            console.log("Failed Checking", err);
+        })
+    }
+    useEffect(() => { checkSession() }, [])
     const [vendorName, setVendorName] = useState("");
     useEffect(() => {
         setTimeout(() => {

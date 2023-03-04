@@ -7,6 +7,7 @@ const vendorRouter = require("./routes/vendor");
 const userRouter = require("./routes/User");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const { getAuthenticate } = require("./authentication/authentication");
 
 const conn=require("./connection/connect");
 conn();//connection with backend established
@@ -35,6 +36,22 @@ app.set("trust proxy", 1)
 app.use(express.json());
 
 const port=process.env.PORT || 8000
+
+app.get("/check", getAuthenticate, (req, res)=>{
+    if(req.result.vendorName!==undefined){
+        res.status(200).json({
+            msg:"vendor"
+        })
+    }else if(req.result.userName!==undefined){
+        res.status(200).json({
+            msg:"user"
+        })
+    }else{
+        res.status(200).json({
+            msg:"sign"
+        })
+    }
+})
 app.use("/events", proposalRouter);//abhijeeth
 app.use("/users", userRouter);//uttej
 app.use("/vendors", vendorRouter);//srinivas

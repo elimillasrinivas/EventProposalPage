@@ -10,11 +10,23 @@ const LandingPage=()=>{
     const [arr,setArr]=useState(Array(selected.data.length).fill(false));
     const [userInfo,setUserInfo]=useState({});
     const [proposals,setProposals]=useState([]);
-    const userSelectionDeleteHandler=()=>{
-        console.log(userInfo._id);
-        axios.put(`https://eventproposalserver.onrender.com/users/${userInfo._id}`,{select:""})
-        .then((response)=>{setSelected({isValid:false,data:{}})})
-        .catch((e)=>{console.log("error in deleting")})
+    const userSelectionDeleteHandler = () => {
+        Swal.fire({
+            position: 'center',
+            icon: 'question',
+            title: 'Delete this proposal?',
+            showConfirmButton: true,
+            showDenyButton:true,
+            confirmButtonText: 'Delete',
+            denyButtonText: `Cancel`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put(`https://eventproposalserver.onrender.com/users/${userInfo._id}`, { select: "" })
+                    .then((response) => { setSelected({ isValid: false, data: {} }) })
+                    .catch((e) => { console.log("error in deleting") })
+
+            }
+        })
     }
     const retriveUserInfo=()=>{
         axios.get("https://eventproposalserver.onrender.com/users/info",{withCredentials:true})
