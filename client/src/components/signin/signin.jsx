@@ -20,7 +20,7 @@ const Signin=()=>{
                  Swal.fire({
                      position: 'center',
                      icon: 'success',
-                     title: 'loggedin successfully',
+                     title: 'LoggedIn successfully',
                      timer: 1000,
                      timerProgressBar: true,
                      showConfirmButton: false,
@@ -35,7 +35,7 @@ const Signin=()=>{
                     Swal.fire({
                         position: 'center',
                         icon: 'error',
-                        title: 'invalid vendor name or password',
+                        title: 'Invalid vendor credentials',
                         showConfirmButton: true,
                         confirmButtonText: 'ok',
                       }) 
@@ -45,7 +45,7 @@ const Signin=()=>{
                     Swal.fire({
                         position: 'center',
                         icon: 'error',
-                        title: 'vendor not registered',
+                        title: 'Vendor not registered',
                         showConfirmButton: true,
                         confirmButtonText: 'ok',
                       })
@@ -69,7 +69,7 @@ const Signin=()=>{
                  Swal.fire({
                      position: 'center',
                      icon: 'success',
-                     title: 'loggedin successfully',
+                     title: 'LoggedIn successfully',
                      timer: 1000,
                      timerProgressBar: true,
                      showConfirmButton: false,
@@ -84,7 +84,7 @@ const Signin=()=>{
                     Swal.fire({
                         position: 'center',
                         icon: 'error',
-                        title: 'Invalid credentials',
+                        title: 'Invalid Credentials',
                         showConfirmButton: true,
                         confirmButtonText: 'ok',
                       })
@@ -95,7 +95,7 @@ const Signin=()=>{
                     Swal.fire({
                         position: 'center',
                         icon: 'error',
-                        title: 'user should register',
+                        title: 'User not registered',
                         showConfirmButton: true,
                         confirmButtonText: 'ok',
                       })

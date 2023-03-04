@@ -62,7 +62,7 @@ const CreateProposal=()=>{
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'proposal created successfully',
+                title: 'Proposal created successfully',
                 timer: 1000,
                 timerProgressBar: true,
                 showConfirmButton: false,
@@ -76,7 +76,7 @@ const CreateProposal=()=>{
             Swal.fire({
                 position: 'center',
                 icon: 'warning',
-                title: 'All fields are manidatory',
+                title: 'All fields are mandatory',
                 
                 showConfirmButton: true,
                 confirmButtonText:"ok"

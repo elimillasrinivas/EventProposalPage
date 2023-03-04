@@ -16,7 +16,7 @@ const EventInfo=(props)=>{
             axios.put(`https://eventproposalserver.onrender.com/users/${props.user}`,{select:props.show._id})
             .then((response)=>{
                 Swal.fire({
-                    title: 'Are you sure you want to add it to your selection',
+                    title: 'Add this proposal?',
                     showDenyButton: true,
                     showCancelButton: false,
                     confirmButtonText: 'Yes',
@@ -44,7 +44,7 @@ const EventInfo=(props)=>{
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'User can select only one eventProposal',
+                text: 'User can select only one Proposal',
               })
         }
     }

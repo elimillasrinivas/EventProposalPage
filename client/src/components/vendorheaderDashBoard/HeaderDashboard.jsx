@@ -24,10 +24,10 @@ const HeaderDashboard = () => {
             <button id="logout" onClick={() => {
                 axios.get("https://eventproposalserver.onrender.com/vendors/logout", { withCredentials: true }).then(() => {
                     Swal.fire({
-                        title: 'Are you sure you want to logoff?',
+                        title: 'Do you want to proceed with logout?',
                         showDenyButton: true,
                         showCancelButton: false,
-                        confirmButtonText: 'logout',
+                        confirmButtonText: 'Logout',
                         denyButtonText: `No`,
                       }).then((result) => {
                         if (result.isConfirmed) {
