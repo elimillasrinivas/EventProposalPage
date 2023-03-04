@@ -92,9 +92,7 @@ catch(e){
 
 
 const logoutVendor = async (req, res) => {
-    res.cookie("jwttoken", "", {
-        maxAge: 0
-    })
+    req.session.jwttoken = "";
     res.status(200).json({
         msg: "Success",
         result: "Logged Out"
