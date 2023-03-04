@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import HeaderDashboard from "../vendorheaderDashBoard/HeaderDashboard"
 import "./viewProposal.css";
+import Swal from "sweetalert2"
 
 
 const ViewProposal = ({ setUpdate }) => {
