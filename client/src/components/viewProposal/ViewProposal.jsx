@@ -77,12 +77,22 @@ const ViewProposal = ({ setUpdate }) => {
                                 navigate("/update");
                             }} />
                             <img className="deleteIcon" src="/images/bin.jpeg" alt="deleteIcon" onClick={()=>{
-                                axios.delete(`https://eventproposalserver.onrender.com/events/${data._id}`).then((response)=>{
-                                   reloadData("");
-                                    
-                                }).catch(err=>{
-                                    console.log(err);
-                                })
+                                Swal.fire({
+                                    title: 'Delete this Proposal?',
+                                    showDenyButton: true,
+                                    showCancelButton: false,
+                                    confirmButtonText: 'Delete',
+                                    denyButtonText: `Cancel`,
+                                    }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        axios.delete(`https://eventproposalserver.onrender.com/events/${data._id}`).then((response)=>{
+                                            reloadData("");
+                                         }).catch(err=>{
+                                             console.log(err);
+                                         })
+                                    }
+                                    })
+
                             }} />
                         </div>
                     </div>

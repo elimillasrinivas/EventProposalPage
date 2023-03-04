@@ -108,7 +108,7 @@ const registerHandler=(e)=>{
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'vendorMail already registered',
+                    title: 'Vendor email already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
                   })
@@ -118,7 +118,7 @@ const registerHandler=(e)=>{
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'phoneNumber already registered',
+                    title: 'Vendor mobile number already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
                   })
@@ -164,7 +164,7 @@ const registerHandler=(e)=>{
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'userMail already registered',
+                    title: 'User email already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
                   })
@@ -174,7 +174,7 @@ const registerHandler=(e)=>{
                 Swal.fire({
                     position: 'center',
                     icon: 'error',
-                    title: 'phoneNumber already registered',
+                    title: 'User mobile number already registered',
                     showConfirmButton: true,
                     confirmButtonText: 'ok',
                   })
@@ -197,7 +197,7 @@ const registerHandler=(e)=>{
         Swal.fire({
             position: 'center',
             icon: 'warning',
-            title: 'All Fields are manidatory',
+            title: 'All Fields are mandatory',
             showConfirmButton: true,
             confirmButtonText: 'Ok',
           })

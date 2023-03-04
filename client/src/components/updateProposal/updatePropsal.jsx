@@ -70,7 +70,7 @@ const UpdateProposal=({update, setUpdate})=>{
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'proposal updated successfully',
+                title: 'Proposal updated successfully',
                 timer: 1000,
                 timerProgressBar: true,
                 showConfirmButton: false,
